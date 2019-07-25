@@ -1,6 +1,8 @@
 .navbar {
-  text-align: right;
+  display: flex;
+  justify-content: space-between;
   padding-right: 15px;
+  padding-left: 15px;
   color: gray;
   background-color: orange;
   height: 20px;

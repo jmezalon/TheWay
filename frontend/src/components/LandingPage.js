@@ -4,6 +4,7 @@ import { Suggestions } from "./Suggestions";
 export const LandingPage = () => {
   return (
     <div className="landing-page">
+      <h1 id="title">Welcome To The Way</h1>
       <div className="search">
         <p>Find local Church near you...</p>
         <input
@@ -14,6 +15,7 @@ export const LandingPage = () => {
         />
       </div>
       <p>suggestions</p>
+
       <Suggestions />
     </div>
   );
