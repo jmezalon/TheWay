@@ -1,7 +1,7 @@
 import React from "react";
 import { Suggestions } from "./Suggestions";
 
-export const LandingPage = () => {
+export const LandingPage = ({ allChurches }) => {
   return (
     <div className="landing-page">
       <h1 id="title">Welcome To The Way</h1>
@@ -16,7 +16,7 @@ export const LandingPage = () => {
       </div>
       <p>suggestions</p>
 
-      <Suggestions />
+      <Suggestions allChurches={allChurches} />
     </div>
   );
 };

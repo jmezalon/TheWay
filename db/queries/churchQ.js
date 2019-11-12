@@ -42,7 +42,7 @@ const newChurch = (req, res, next) => {
   req.body.website = req.body.website ? req.body.website : null;
 
   db.none(
-    "INSERT INTO churches (name, pastor, location, zip_code, website)",
+    "INSERT INTO churches (name, pastor, location, zip_code, website) VALUES(${name}, ${pastor}, ${location}, ${zip_code}, ${website})",
     req.body
   )
     .then(() => {
@@ -87,7 +87,7 @@ const deleteChurch = (req, res, next) => {
       res.status(200).json({
         status: "success",
         result: result,
-        message: "you have deleted this user"
+        message: "you have deleted this church"
       });
     })
     .catch(err => {

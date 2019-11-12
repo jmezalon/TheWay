@@ -1,6 +1,6 @@
 import React from "react";
 import axios from "axios";
-import { Route, Switch, withRouter, Link } from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
 
 import { Navbar } from "./components/Navbar";
 import { LandingPage } from "./components/LandingPage";
@@ -13,16 +13,40 @@ class App extends React.Component {
   state = {
     allChurches: []
   };
+
+  getAllChurches = () => {
+    axios
+      .get("/churches")
+      .then(res => {
+        this.setState({
+          allChurches: res.data.churches
+        });
+      })
+      .catch(er => {
+        console.log(er, "church error");
+      });
+  };
+  componentDidMount() {
+    this.getAllChurches();
+  }
   render() {
     return (
       <div className="App">
         <Route component={Navbar} />
         <Switch>
-          <Route exact path="/" render={props => <LandingPage {...props} />} />
+          <Route
+            exact
+            path="/"
+            render={props => (
+              <LandingPage {...props} allChurches={this.state.allChurches} />
+            )}
+          />
           <Route
             exact
             path="/local-church/:id"
-            render={props => <ChurchPage {...props} />}
+            render={props => (
+              <ChurchPage {...props} allChurches={this.state.allChurches} />
+            )}
           />
           <Route
             exact

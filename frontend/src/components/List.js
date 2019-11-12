@@ -1,18 +1,20 @@
 import React from "react";
-import { Link } from "react-router-dom";
 
-export const List = () => {
-  return (
-    <div className="suggestions">
-      <Link to="/local-church/:id">
-        <h3>Church Title</h3>
-      </Link>
-      <p>Pastor Name here</p>
+export const List = ({ allChurches }) => {
+  let suggestedChurch = allChurches.map(church => {
+    return (
       <>
-        <p>address here</p>
-        <p>zip_code here</p>
-        <p>link to website here</p>
+        <Link key={church.id} to="/local-church/:id">
+          <h3>{church.name}</h3>
+        </Link>
+        <p>{church.pastor}</p>
+        <div id="address">
+          <p>{church.location}</p>
+          <p>{church.zip_code}</p>
+          <p>{church.website}</p>
+        </div>
       </>
-    </div>
-  );
+    );
+  });
+  return <div className="suggestions">{suggestedChurch}</div>;
 };
